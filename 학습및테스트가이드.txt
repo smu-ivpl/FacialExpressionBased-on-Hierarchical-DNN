@@ -1,0 +1,61 @@
+■ 환경세팅
+>fer_env.yml
+ (1)파일 텍스트파일로 오픈하여 가장아래 prefix:~부분을 본인이 설치한 anaconda경로와 명칭에 맞게 변경후 저장
+ (2)anaconda prompt 관리자 권한으로실행
+ (3)yml파일이 있는 경로로 이동
+ (4)conda env create -f fer_env.yml 실행
+ (5)conda activate ferenv 실행 후 가상환경 세팅 확인
+※만약 SystemError: execution of module h5py.utils raised unreported exception 오류날시 "pip install spladder" 실행
+
+■ 모델 테스트
+fer_main_6.py실행
+테스트 원하는 데이터 셋 선택(1~7)
+-----------------------------------------
+>>          FER DEMO SYSTEM            <<
+-----------------------------------------
+-----------------------------------------
+> (1) : New Image
+> (2) : CK+
+> (3) : JAFFE
+> (4) : FERG
+> (5) : AffectNet
+> (6) : ALL100
+> (7) : EXIT
+-----------------------------------------
+> 작업 선택 : 
+
+
+■ 모델 학습
+1. LBP CNN모델 학습
+>train_app_6.py
+main실행 후 학습시키고자 하는 실행창에서 데이터셋 선택
+-----------------------------------------
+>>          FER TRAIN SYSTEM            <<
+-----------------------------------------
+-----------------------------------------
+> (0) : FERG
+> (1) : JAFFE
+> (2) : CK+
+> (3) : AffectNet
+> (4) : EXIT
+-----------------------------------------
+학습 모델결과: app_cnn_6/model/{iteration value}/[데이터셋명]_app_cnn~.hdf5으로저장(481line~487line참조)
+
+2. Geometric CNN모델 학습
+>pairwise_classifier_new.py
+  (1) 특정 pairwise에 대한 학습
+    loading_data_pair(X,Y,emo1, emo2)를 통해 이미지로딩 후 CNN(X_pair, Y_pair, emo1, emo2) 함수 실행
+  (2)특정 데이터셋에 대한 학습
+    train_save(str)
+      str 0: ferg/1: jaffe/2: ckplus/3: affectnet
+학습모델결과: geo_cnn_6/폴더에 각 데이터셋에대한 pairwise model이 생성
+
+※autoencoder는 neutral image가 없는경우 생성(ex)affectnet 데이터셋의 경우)
+: geometric모델은, 무표정좌표에서 표정이 있는 좌표의 차이를 추출하는데,
+일부데이터 셋의 경우, 동일 인물의 무표정 데이터가 없으므로 따로 autoencoder모델을 이용해
+무표정 데이터를 추출한다.
+Autoencoder_main.py
+
+3. cnn모델+geo모델 Join 결과
+fer_main_6.py 실행(테스트와 동일)
+
