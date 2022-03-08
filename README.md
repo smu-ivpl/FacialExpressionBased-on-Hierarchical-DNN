@@ -1,7 +1,7 @@
 # FacialExpressionBased-on-Hierarchical-DNN
 Efficient Facial Expression Recognition Algorithm Based on Hierarchical Deep Neural Network Structure
 
-Paper link: https://ieeexplore.ieee.org/abstract/document/8673885
+Paper link: IEEE Access, Vol. 7, 2019, https://ieeexplore.ieee.org/abstract/document/8673885
 
 # Configuration Setting
 With fer_env.yml
