@@ -59,6 +59,6 @@ With fer_env.yml
     
     ※ You can use "autoencoder" when you need to generate some neutral image in Affectnet dataset.  You can run "Autoencoder_main.py" to do this.
     
-    3. Combined HDNN FER results
+# Combined HDNN FER results
     
      You can run "fer_main_6.py" as Model Test procedure.
